@@ -28,9 +28,13 @@
     	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
     	<columnOverride column="parent_id" javaType="Menu" property="parentMenu"></columnOverride>
     </table> -->
-    <table tableName="role_menu" domainObjectName="roleMenu">
+   <!--  <table tableName="role_menu" domainObjectName="roleMenu">
     	<columnOverride column="role_id" javaType="Role" property="role"></columnOverride>
     	<columnOverride column="menu_id" javaType="Menu" property="menu"></columnOverride>
+    </table> -->
+    
+    <table tableName="securityquestion" domainObjectName="Securityquestion">
+    	<columnOverride column="user_id" javaType="User" property="user"></columnOverride>
     </table>
     
     
