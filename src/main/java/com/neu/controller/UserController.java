@@ -14,14 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.neu.entity.LoginResponse;
 import com.neu.entity.User;
 import com.neu.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("user")
 public class UserController {
 
@@ -29,19 +30,32 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("login")
-	public LoginResponse login(String username,String password,String code) {
+	@ResponseBody
+	public LoginResponse login(String username,String password,String code,HttpSession session) {
 		User user = userService.login("root", "111");
 		LoginResponse loginResponse = new LoginResponse();
 		if(user != null) {
 			loginResponse.setUser(user);
 			loginResponse.setStatus("success");
+			session.setAttribute("user", user);
 			return loginResponse;
 		}else {
 			return null;
 		}
 	}
 	
+	@RequestMapping("getUserId")
+	public String getUserId(String username) {
+		User user = userService.getUserId(username);
+		if(user == null) {
+			return "redirect:/securityquestion/noUserSQInfo";
+		}
+		return "redirect:/securityquestion/getByUserName?userId="+user.getId();
+	}
+	
+	
 	@RequestMapping("visitor")
+	@ResponseBody
 	public LoginResponse visitor(HttpSession session) {
 		User user = userService.login("游客编号", "111");
 		LoginResponse loginResponse = new LoginResponse();
@@ -64,6 +78,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("userMenu")
+	@ResponseBody
 	public LoginResponse getUserMenu(String username,String password,String Code){
 		User user = userService.login("root", "111");
 		LoginResponse loginResponse = new LoginResponse();
@@ -77,6 +92,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("code")
+	@ResponseBody
 	public void getCode(HttpServletResponse response,HttpSession session) throws IOException {
 		//创建图片，设置图片大小和类型
 		BufferedImage buffImg = new BufferedImage(50, 30, BufferedImage.TYPE_INT_RGB);

@@ -10,7 +10,7 @@
    
     <result column="question" jdbcType="VARCHAR" property="question" />
     <result column="answer" jdbcType="VARCHAR" property="answer" />
-     <association column="user_id" jdbcType="User" property="user" select="com.neu.mapper.UserMapper.selectByPrimaryKey"></association>
+    <association column="user_id" property="user" select="com.neu.mapper.UserMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--

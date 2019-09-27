@@ -58,5 +58,10 @@ public class SecurityquestionServiceImpl implements SecurityquestionService {
 		List<Securityquestion> list = mapper.selectByExample(example);
 		return list;
 	}
+	
+	@Override
+	public List<Securityquestion> getAll() {
+		return mapper.selectByExample(new SecurityquestionExample());
+	}
 
 }

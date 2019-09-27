@@ -61,4 +61,16 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public User getUserId(String username) {
+		UserExample example = new UserExample();
+		example.or().andUsernameEqualTo(username);
+		List<User> list = userMapper.selectByExample(example);
+		if(list != null && list.size() != 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+
 }

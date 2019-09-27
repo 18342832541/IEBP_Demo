@@ -28,7 +28,7 @@ public class Md5Utils {
 		}
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		System.out.println(md5("111"));
-	}
+	}*/
 }
