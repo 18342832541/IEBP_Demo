@@ -11,4 +11,6 @@ public interface SmallCategoryService extends IService<SmallCategory> {
 	PageInfo<SmallCategory> getPagedSelective(int pageNum, int pageSize, Map<String, Object> params);
 
 	List<SmallCategory> getAll(int id);
+
+	/*PageInfo<SmallCategory> getPaged(int pageNum, int pageSize);*/
 }
