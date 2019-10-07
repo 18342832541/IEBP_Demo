@@ -27,18 +27,20 @@ public class ComreviewController {
 
 	// 评论的增加
 	@RequestMapping("insert")
-	public int insert(Comreview comreview) {
+	public int insert(@RequestBody Comreview comreview, HttpSession session) {
 		Date date = new Date();
+		User user = (User)session.getAttribute("user");
 		comreview.setComreviewTime(date);
+		comreview.setUser(user);
 
 		return comreviewService.insert(comreview);
 	}
 
 	// 评论的删除
 	@RequestMapping("delete")
-	public int delete(int id) {
+	public int delete(@RequestBody Comreview comreview) {
 
-		return comreviewService.delete(id);
+		return comreviewService.delete(comreview.getId());
 
 	}
 

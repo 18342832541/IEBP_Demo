@@ -1,7 +1,6 @@
 package com.neu.mapper;
 
 import com.neu.entity.OrderInfo;
-
 import com.neu.entity.OrderInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;

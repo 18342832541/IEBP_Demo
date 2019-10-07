@@ -402,63 +402,63 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryIsNull() {
+        public Criteria andCommodityIsNull() {
             addCriterion("goods_number is null");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryIsNotNull() {
+        public Criteria andCommodityIsNotNull() {
             addCriterion("goods_number is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryEqualTo(SmallCategory value) {
-            addCriterion("goods_number =", value, "smallcategory");
+        public Criteria andCommodityEqualTo(Commodity value) {
+            addCriterion("goods_number =", value, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryNotEqualTo(SmallCategory value) {
-            addCriterion("goods_number <>", value, "smallcategory");
+        public Criteria andCommodityNotEqualTo(Commodity value) {
+            addCriterion("goods_number <>", value, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryGreaterThan(SmallCategory value) {
-            addCriterion("goods_number >", value, "smallcategory");
+        public Criteria andCommodityGreaterThan(Commodity value) {
+            addCriterion("goods_number >", value, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryGreaterThanOrEqualTo(SmallCategory value) {
-            addCriterion("goods_number >=", value, "smallcategory");
+        public Criteria andCommodityGreaterThanOrEqualTo(Commodity value) {
+            addCriterion("goods_number >=", value, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryLessThan(SmallCategory value) {
-            addCriterion("goods_number <", value, "smallcategory");
+        public Criteria andCommodityLessThan(Commodity value) {
+            addCriterion("goods_number <", value, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryLessThanOrEqualTo(SmallCategory value) {
-            addCriterion("goods_number <=", value, "smallcategory");
+        public Criteria andCommodityLessThanOrEqualTo(Commodity value) {
+            addCriterion("goods_number <=", value, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryIn(List<SmallCategory> values) {
-            addCriterion("goods_number in", values, "smallcategory");
+        public Criteria andCommodityIn(List<Commodity> values) {
+            addCriterion("goods_number in", values, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryNotIn(List<SmallCategory> values) {
-            addCriterion("goods_number not in", values, "smallcategory");
+        public Criteria andCommodityNotIn(List<Commodity> values) {
+            addCriterion("goods_number not in", values, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryBetween(SmallCategory value1, SmallCategory value2) {
-            addCriterion("goods_number between", value1, value2, "smallcategory");
+        public Criteria andCommodityBetween(Commodity value1, Commodity value2) {
+            addCriterion("goods_number between", value1, value2, "commodity");
             return (Criteria) this;
         }
 
-        public Criteria andSmallcategoryNotBetween(SmallCategory value1, SmallCategory value2) {
-            addCriterion("goods_number not between", value1, value2, "smallcategory");
+        public Criteria andCommodityNotBetween(Commodity value1, Commodity value2) {
+            addCriterion("goods_number not between", value1, value2, "commodity");
             return (Criteria) this;
         }
 
@@ -582,73 +582,143 @@ public class OrderInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusIsNull() {
-            addCriterion("order_status is null");
+        public Criteria andConstantItem1IsNull() {
+            addCriterion("status1 is null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusIsNotNull() {
-            addCriterion("order_status is not null");
+        public Criteria andConstantItem1IsNotNull() {
+            addCriterion("status1 is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusEqualTo(String value) {
-            addCriterion("order_status =", value, "orderStatus");
+        public Criteria andConstantItem1EqualTo(ConstantItem value) {
+            addCriterion("status1 =", value.getId(), "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusNotEqualTo(String value) {
-            addCriterion("order_status <>", value, "orderStatus");
+        public Criteria andConstantItem1NotEqualTo(ConstantItem value) {
+            addCriterion("status1 <>", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusGreaterThan(String value) {
-            addCriterion("order_status >", value, "orderStatus");
+        public Criteria andConstantItem1GreaterThan(ConstantItem value) {
+            addCriterion("status1 >", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusGreaterThanOrEqualTo(String value) {
-            addCriterion("order_status >=", value, "orderStatus");
+        public Criteria andConstantItem1GreaterThanOrEqualTo(ConstantItem value) {
+            addCriterion("status1 >=", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusLessThan(String value) {
-            addCriterion("order_status <", value, "orderStatus");
+        public Criteria andConstantItem1LessThan(ConstantItem value) {
+            addCriterion("status1 <", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusLessThanOrEqualTo(String value) {
-            addCriterion("order_status <=", value, "orderStatus");
+        public Criteria andConstantItem1LessThanOrEqualTo(ConstantItem value) {
+            addCriterion("status1 <=", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusLike(String value) {
-            addCriterion("order_status like", value, "orderStatus");
+        public Criteria andConstantItem1Like(ConstantItem value) {
+            addCriterion("status1 like", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusNotLike(String value) {
-            addCriterion("order_status not like", value, "orderStatus");
+        public Criteria andConstantItem1NotLike(ConstantItem value) {
+            addCriterion("status1 not like", value, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusIn(List<String> values) {
-            addCriterion("order_status in", values, "orderStatus");
+        public Criteria andConstantItem1In(List<ConstantItem> values) {
+            addCriterion("status1 in", values, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusNotIn(List<String> values) {
-            addCriterion("order_status not in", values, "orderStatus");
+        public Criteria andConstantItem1NotIn(List<ConstantItem> values) {
+            addCriterion("status1 not in", values, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusBetween(String value1, String value2) {
-            addCriterion("order_status between", value1, value2, "orderStatus");
+        public Criteria andConstantItem1Between(ConstantItem value1, ConstantItem value2) {
+            addCriterion("status1 between", value1, value2, "constantItem1");
             return (Criteria) this;
         }
 
-        public Criteria andOrderStatusNotBetween(String value1, String value2) {
-            addCriterion("order_status not between", value1, value2, "orderStatus");
+        public Criteria andConstantItem1NotBetween(ConstantItem value1, ConstantItem value2) {
+            addCriterion("status1 not between", value1, value2, "constantItem1");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2IsNull() {
+            addCriterion("status2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2IsNotNull() {
+            addCriterion("status2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2EqualTo(ConstantItem value) {
+            addCriterion("status2 =", value.getId(), "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2NotEqualTo(ConstantItem value) {
+            addCriterion("status2 <>", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2GreaterThan(ConstantItem value) {
+            addCriterion("status2 >", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2GreaterThanOrEqualTo(ConstantItem value) {
+            addCriterion("status2 >=", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2LessThan(ConstantItem value) {
+            addCriterion("status2 <", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2LessThanOrEqualTo(ConstantItem value) {
+            addCriterion("status2 <=", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2Like(ConstantItem value) {
+            addCriterion("status2 like", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2NotLike(ConstantItem value) {
+            addCriterion("status2 not like", value, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2In(List<ConstantItem> values) {
+            addCriterion("status2 in", values, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2NotIn(List<ConstantItem> values) {
+            addCriterion("status2 not in", values, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2Between(ConstantItem value1, ConstantItem value2) {
+            addCriterion("status2 between", value1, value2, "constantItem2");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstantItem2NotBetween(ConstantItem value1, ConstantItem value2) {
+            addCriterion("status2 not between", value1, value2, "constantItem2");
             return (Criteria) this;
         }
     }

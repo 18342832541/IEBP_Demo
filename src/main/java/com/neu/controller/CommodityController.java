@@ -21,21 +21,21 @@ public class CommodityController {
 
 	// 商品的增加
 	@RequestMapping("insert")
-	public int insert(Commodity commodity) {
+	public int insert(@RequestBody Commodity commodity) {
 		return commodityService.insert(commodity);
 
 		// 商品的删除
 	}
 
 	@RequestMapping("delete")
-	public int delete(int id) {
-		return commodityService.delete(id);
+	public int delete(@RequestBody Commodity commodity) {
+		return commodityService.delete(commodity.getId());
 
 	}
 
 	/// 商品的更新
 	@RequestMapping("update")
-	public int update(Commodity commodity) {
+	public int update(@RequestBody Commodity commodity) {
 		return commodityService.update(commodity);
 
 	}

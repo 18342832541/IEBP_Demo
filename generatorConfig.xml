@@ -33,8 +33,17 @@
     	<columnOverride column="menu_id" javaType="Menu" property="menu"></columnOverride>
     </table> -->
     
-    <table tableName="securityquestion" domainObjectName="Securityquestion">
+    <table tableName="order_info" domainObjectName="OrderInfo">
+    	<columnOverride column="goods_number" javaType="Commodity" property="commodity"></columnOverride>
     	<columnOverride column="user_id" javaType="User" property="user"></columnOverride>
+    	<columnOverride column="status1" javaType="ConstantItem" property="constantItem1"></columnOverride>
+    	<columnOverride column="status2" javaType="ConstantItem" property="constantItem2"></columnOverride>
+    </table>
+    
+     <table tableName="constantitem" domainObjectName="ConstantItem">
+    	<columnOverride column="ConstantTypeID" javaType="ConstantType" property="constantType"></columnOverride>
+    </table>
+    <table tableName="constanttype" domainObjectName="ConstantType">
     </table>
     
     
