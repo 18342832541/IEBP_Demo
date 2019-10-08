@@ -30,7 +30,7 @@ public class ComreviewServiceImpl implements ComreviewService {
 	@Override
 	public int insert(Comreview entity) {
 
-		return comreviewMapper.insert(entity);
+		return comreviewMapper.insertSelective(entity);
 	}
 
 	@Override

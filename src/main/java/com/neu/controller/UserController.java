@@ -32,7 +32,7 @@ public class UserController {
 	@RequestMapping("login")
 	@ResponseBody
 	public LoginResponse login(String username,String password,String code,HttpSession session) {
-		User user = userService.login("root", "111");
+		User user = userService.login(username, password);
 		LoginResponse loginResponse = new LoginResponse();
 		if(user != null) {
 			loginResponse.setUser(user);
