@@ -1,11 +1,15 @@
 package com.neu.controller;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.util.ArrayList;
+=======
+>>>>>>> refs/remotes/origin/master
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +20,10 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+=======
+import javax.servlet.http.HttpSession;
+
+>>>>>>> refs/remotes/origin/master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,8 +73,20 @@ public class OrderInfoController {
 		return 1;
 	}
 
+<<<<<<< HEAD
+=======
+	@RequestMapping("test")
+	public long test() {
+		long random = Math.round((Math.random()) * 1000);
+		System.out.println(random);
+		Date date = new Date();
+		System.out.println(date);
+		return random;
+	}
+>>>>>>> refs/remotes/origin/master
 
 	@RequestMapping("getByUserIdPaged")
+<<<<<<< HEAD
 	public PageInfo<OrderInfo> getByUserIdPaged(
 			@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pageSize, 
@@ -163,6 +183,17 @@ public class OrderInfoController {
 		wb.write(outputStream);
 		//关闭响应流
 		outputStream.close();
+=======
+	public PageInfo<OrderInfo> getByUserIdPaged(@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(defaultValue = "5") int pageSize, @RequestBody User user) {
+		return orderInfoService.getByUserIdPaged(pageNum, pageSize, user);
+	}
+
+	@RequestMapping("getPaged")
+	public PageInfo<OrderInfo> getPaged(@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(defaultValue = "5") int pageSize, @RequestBody Map<String, Object> params) {
+		return orderInfoService.getPaged(pageNum, pageSize, params);
+>>>>>>> refs/remotes/origin/master
 	}
 
 }

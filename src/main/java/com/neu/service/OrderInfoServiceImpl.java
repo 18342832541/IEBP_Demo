@@ -102,14 +102,27 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	 */
 
 	// 查询所有
+<<<<<<< HEAD
+=======
+	/*
+	 * @Override public PageInfo<OrderInfo> getPaged1(int pageNum, int
+	 * pageSize,Map<String, Object> params) { PageHelper.startPage(pageNum,
+	 * pageSize); List<OrderInfo> list = orderInfoMapper.selectByExample(new
+	 * OrderInfoExample()); PageInfo<OrderInfo> pageInfo = new PageInfo<>(list);
+	 * return pageInfo; }
+	 */
+>>>>>>> refs/remotes/origin/master
 
 	@Override
+<<<<<<< HEAD
 	public List<OrderInfo> getAll() {
 		List<OrderInfo> list = orderInfoMapper.selectByExample(new OrderInfoExample());
 		return list;
 	}
 
 	@Override
+=======
+>>>>>>> refs/remotes/origin/master
 	public PageInfo<OrderInfo> getByUserIdPaged(int pageNum, int pageSize, User user) {
 		PageHelper.startPage(pageNum, pageSize);
 		OrderInfoExample example = new OrderInfoExample();
