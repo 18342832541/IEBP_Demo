@@ -22,15 +22,15 @@ public class SmallCategoryController {
 	private SmallCategoryService smallCategoryService;
 
 	@RequestMapping("insert")
-	public int insert(SmallCategory smallCategory) {
+	public int insert(@RequestBody SmallCategory smallCategory) {
 		return smallCategoryService.insert(smallCategory);
 
 		// 小分类的删除
 	}
 
 	@RequestMapping("delete")
-	public int delete(int id) {
-		return smallCategoryService.delete(id);
+	public int delete(@RequestBody SmallCategory smallCategory) {
+		return smallCategoryService.delete(smallCategory.getId());
 
 	}
 

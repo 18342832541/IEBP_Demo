@@ -88,5 +88,15 @@ public class Role {
 	public void setRoleMenuList(List<RoleMenuKey> roleMenuList) {
 		this.roleMenuList = roleMenuList;
 	}
+
+	public Role(Integer id) {
+		super();
+		this.id = id;
+	}
+
+	public Role() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
     
 }

@@ -19,7 +19,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int insert(UserInfo entity) {
-		return userInfoMapper.insert(entity);
+		return userInfoMapper.insertSelective(entity);
 
 	}
 

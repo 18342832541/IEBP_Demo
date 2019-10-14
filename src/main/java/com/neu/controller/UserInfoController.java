@@ -1,6 +1,7 @@
 package com.neu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,9 +30,13 @@ public class UserInfoController {
 
 	// 先执行查询个人信息再修改
 	@RequestMapping("update")
-	public int update(UserInfo userInfo) {
-
-		return userInfoService.update(userInfo);
+	public int update(@RequestBody UserInfo userInfo) {
+		UserInfo ifUserInfo = userInfoService.getById(userInfo.getUser().getId());
+		if(ifUserInfo == null || ifUserInfo.toString() == "") {
+			return userInfoService.insert(userInfo);
+		}else {
+			return userInfoService.update(userInfo);
+		}
 	}
 
 }

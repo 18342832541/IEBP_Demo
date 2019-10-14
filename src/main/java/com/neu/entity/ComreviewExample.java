@@ -266,7 +266,7 @@ public class ComreviewExample {
         }
 
         public Criteria andUserEqualTo(User value) {
-            addCriterion("user_id =", value, "user");
+            addCriterion("user_id =", value.getId(), "user");
             return (Criteria) this;
         }
 

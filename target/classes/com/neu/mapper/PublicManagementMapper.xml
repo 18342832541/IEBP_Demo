@@ -221,4 +221,7 @@
     set message = #{message,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+ <!--  <select id="getAll" resultType="com.neu.entity.PublicManagementExample">
+  select * from public_management 
+  </select> -->
 </mapper>

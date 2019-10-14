@@ -38,9 +38,16 @@ public class InformationManagementServiceImpl  implements InformationManagementS
 
 	@Override
 	public InformationManagement getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+				InformationManagementExample example=new InformationManagementExample();
+				example.or().andIdEqualTo(id);
+				List<InformationManagement> list = informationManagementMapper.selectByExample(example);
+				if(list != null && list.size() != 0) {
+					return list.get(0);
+				}else {
+					return null;
+				}
+			}
+
     
 	@Override
 	public PageInfo<InformationManagement> getPaged(int pageNum, int pageSize, Map<String, Object> params) {
@@ -52,9 +59,16 @@ public class InformationManagementServiceImpl  implements InformationManagementS
 	@Override
 	public PageInfo<InformationManagement> getPaged(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		List<InformationManagement> list = informationManagementMapper.getAll();
+		List<InformationManagement> list = informationManagementMapper.selectByExample(new InformationManagementExample());
 		PageInfo pageInfo =  new  PageInfo<>(list);
 		return pageInfo;
+		
+	}
+	
+	@Override
+	public List<InformationManagement> getAll(){
+		
+	return	informationManagementMapper.selectByExample(new InformationManagementExample());
 		
 	}
 

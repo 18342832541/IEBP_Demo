@@ -221,7 +221,7 @@
     set information = #{information,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getAll" resultType="com.neu.entity.InformationManagement">
+ <!--  <select id="getAll" resultType="com.neu.entity.InformationManagement">
   select * from information_management order by id
-  </select>
+  </select> -->
 </mapper>

@@ -405,12 +405,12 @@ public class UserExample {
         }
 
         public Criteria andRoleEqualTo(Role value) {
-            addCriterion("role_id =", value, "role");
+            addCriterion("role_id =", value.getId(), "role");
             return (Criteria) this;
         }
 
         public Criteria andRoleNotEqualTo(Role value) {
-            addCriterion("role_id <>", value, "role");
+            addCriterion("role_id <>", value.getId(), "role");
             return (Criteria) this;
         }
 
@@ -435,7 +435,11 @@ public class UserExample {
         }
 
         public Criteria andRoleIn(List<Role> values) {
-            addCriterion("role_id in", values, "role");
+        	List<Integer> list = new ArrayList<>();
+        	for(Role r : values){
+        		list.add(r.getId());
+        	}
+            addCriterion("role_id in", list, "role");
             return (Criteria) this;
         }
 

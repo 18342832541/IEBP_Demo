@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -19,6 +20,7 @@ public class LargerCategoryServiceImpl implements LargerCategoryService {
 
 	// 大分类的增加
 	@Override
+	@RequestMapping("insert")
 	public int insert(LargerCategory entity) {
 
 		return largerCategoryMapper.insert(entity);
@@ -33,6 +35,7 @@ public class LargerCategoryServiceImpl implements LargerCategoryService {
 
 	// 大分类的删除
 	@Override
+	@RequestMapping("delete")
 	public int delete(int id) {
 		return largerCategoryMapper.deleteByPrimaryKey(id);
 	}
@@ -56,6 +59,7 @@ public class LargerCategoryServiceImpl implements LargerCategoryService {
 	}
 
 	@Override
+	@RequestMapping("getAll")
 	public List<LargerCategory> getAll() {
 		return largerCategoryMapper.selectByExample(new LargerCategoryExample());
 	}

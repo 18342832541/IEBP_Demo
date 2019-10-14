@@ -86,14 +86,11 @@ public class ComreviewServiceImpl implements ComreviewService {
 	// 已修改自己的方法,通过个人的id,查询自己所写的评论
 	public List<Comreview> getByUserId(User user) {
 		ComreviewExample example = new ComreviewExample();
-		Criteria criteria = example.or().andUserEqualTo(user);
-		if (criteria != null) {
-			Integer id = user.getId();
-			List<Comreview> list = comreviewMapper.selectByPrimaryKey(id);
-			return list;
-
-		}
-		return null;
+		example.or().andUserEqualTo(user);
+		example.setOrderByClause("comreview_time desc");
+		
+		List<Comreview> list = comreviewMapper.selectByExample(example);
+		return list;
 
 	}
 

@@ -1,5 +1,6 @@
 package com.neu.mapper;
 
+import com.neu.entity.InformationManagement;
 import com.neu.entity.PublicManagement;
 import com.neu.entity.PublicManagementExample;
 import java.util.List;
@@ -93,4 +94,6 @@ public interface PublicManagementMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(PublicManagement record);
+    
+  /*  List<PublicManagement > getAll();*/
 }

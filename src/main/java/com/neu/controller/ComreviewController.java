@@ -55,8 +55,7 @@ public class ComreviewController {
 
 	// 个人的评论查询
 	@RequestMapping("getByUserId")
-	List<Comreview> getByUserId(HttpSession session) {
-		User user = (User) session.getAttribute("user");
+	public List<Comreview> getByUserId(@RequestBody User user) {
 		List<Comreview> list = comreviewService.getByUserId(user);
 		return list;
 

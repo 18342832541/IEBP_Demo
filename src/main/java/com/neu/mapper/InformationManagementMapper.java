@@ -93,6 +93,6 @@ public interface InformationManagementMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(InformationManagement record);
-    List<InformationManagement> getAll();
-    
+   /* List<InformationManagement> getAll();
+*/    
 }

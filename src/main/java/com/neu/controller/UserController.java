@@ -13,12 +13,17 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.neu.entity.LoginResponse;
+import com.neu.entity.Role;
 import com.neu.entity.User;
 import com.neu.service.UserService;
 
@@ -44,6 +49,38 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping("exit")
+	@ResponseBody
+	public int exit(@Required HttpSession session){
+		session.invalidate();
+		return 1;
+	}
+	
+	@RequestMapping("updatePassword")
+	@ResponseBody
+	public int updatePassword(@RequestBody User user, @Required HttpSession session){
+		int i = userService.update(user);
+		session.setAttribute("user", user);
+		return i;
+	}
+	
+	@RequestMapping("getPaged")
+	@ResponseBody
+	public PageInfo<User> getPaged(
+			@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(defaultValue = "7") int pageSize, 
+			@RequestBody Role role,
+			@Required HttpSession session){
+		User user = (User)session.getAttribute("user");
+		return userService.getPaged(pageNum, pageSize, role, user);
+	}
+	
+	@RequestMapping("delete")
+	@ResponseBody
+	public int delete(User user){
+		return userService.delete(user.getId());
+	}
+	
 	@RequestMapping("getUserId")
 	public String getUserId(String username) {
 		User user = userService.getUserId(username);
@@ -57,7 +94,7 @@ public class UserController {
 	@RequestMapping("visitor")
 	@ResponseBody
 	public LoginResponse visitor(HttpSession session) {
-		User user = userService.login("游客编号", "111");
+	
 		LoginResponse loginResponse = new LoginResponse();
 		Integer visitorId = (Integer)session.getAttribute("visitorId");
 		if(visitorId == null) {
@@ -67,9 +104,14 @@ public class UserController {
 			
 			visitorId = Integer.parseInt(dateStr.concat("00"));
 		}
+		User user = new User();
+		user.setUsername("游客"+visitorId.toString());
+		userService.insert(user);
 		
-		user.setUsername(visitorId.toString());
+		user = userService.getById(user.getId());
+		
 		session.setAttribute("visitorId", visitorId+1);
+		session.setAttribute("user", user);
 		
 		loginResponse.setUser(user);
 		loginResponse.setStatus("success");

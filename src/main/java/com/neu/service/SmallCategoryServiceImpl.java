@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -20,7 +21,7 @@ public class SmallCategoryServiceImpl implements SmallCategoryService {
 
 	// 小分类的增加
 	@Override
-	public int insert(SmallCategory entity) {
+	public int insert(@RequestBody SmallCategory entity) {
 		return smallCategoryMapper.insert(entity);
 	}
 
@@ -92,6 +93,11 @@ public class SmallCategoryServiceImpl implements SmallCategoryService {
 		return smallCategoryMapper.selectByExample(example);
 	}
 
-	
+	@Override
+	public int deleteByLg(LargerCategory largerCategory) {
+		SmallCategoryExample example = new SmallCategoryExample();
+		example.or().andLargercategoryEqualTo(largerCategory);
+		return smallCategoryMapper.deleteByExample(example);
+	}
 
 }
