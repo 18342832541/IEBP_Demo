@@ -9,6 +9,8 @@ public interface UserService extends IService<User> {
 	User login(String username, String password);
 	
 	User getUserId(String username);
+	
+	User getByName(String username);
 
 	PageInfo<User> getPaged(int pageNum, int pageSize, Role role, User nowUser);
 }

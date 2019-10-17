@@ -12,7 +12,6 @@ import com.neu.entity.Commodity;
 import com.neu.entity.CommodityExample;
 import com.neu.entity.Comreview;
 import com.neu.entity.ComreviewExample;
-import com.neu.entity.ComreviewExample.Criteria;
 import com.neu.entity.User;
 import com.neu.mapper.CommodityMapper;
 import com.neu.mapper.ComreviewMapper;
@@ -92,6 +91,13 @@ public class ComreviewServiceImpl implements ComreviewService {
 		List<Comreview> list = comreviewMapper.selectByExample(example);
 		return list;
 
+	}
+
+	@Override
+	public int deleteByCommodity(Commodity commodity) {
+		ComreviewExample example = new ComreviewExample();
+		example.or().andCommodityEqualTo(commodity);
+		return comreviewMapper.deleteByExample(example);
 	}
 
 }

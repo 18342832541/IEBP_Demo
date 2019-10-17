@@ -19,8 +19,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int insert(UserInfo entity) {
+		
 		return userInfoMapper.insertSelective(entity);
-
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		user.setId(id);
 		example.or().andUserEqualTo(user);
 		List<UserInfo> list = userInfoMapper.selectByExample(example);
-		if(list != null && list.size() != 0) {
+		if(!(list.isEmpty() || list.get(0) == null)) {
 			return list.get(0);
 		}
 		return null;

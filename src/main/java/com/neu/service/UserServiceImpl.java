@@ -23,8 +23,19 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int insert(User entity) {
-		
 		return userMapper.insertSelective(entity);
+	}
+	
+	@Override
+	public User getByName(String username) {
+		UserExample example = new UserExample();
+		example.or().andUsernameEqualTo(username).andDelmarkEqualTo(1);
+		List<User> list = userMapper.selectByExample(example);
+		if(list.isEmpty() || list.get(0) == null) {
+			return null;
+		}else {
+			return list.get(0);
+		}
 	}
 
 	@Override
@@ -62,6 +73,7 @@ public class UserServiceImpl implements UserService {
 			roles.add(new Role(4));
 		}
 		criteria.andRoleIn(roles);
+		criteria.andDelmarkEqualTo(1);
 		
 		if (role != null && role.getId() != 0){
 			criteria.andRoleEqualTo(role);
@@ -75,10 +87,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(String username, String password) {
 		UserExample example = new UserExample();
-		example.or().andUsernameEqualTo(username).andPasswordEqualTo(password);
+		example.or().andUsernameEqualTo(username)
+			.andPasswordEqualTo(password)
+			.andDelmarkEqualTo(1);
 		
 		List<User> list = userMapper.selectByExample(example);
-		if(list != null && list.get(0) != null) {
+		if(!list.isEmpty() && list.get(0) != null) {
 			return list.get(0);
 		}else {
 			return null;
@@ -89,7 +103,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserId(String username) {
 		UserExample example = new UserExample();
-		example.or().andUsernameEqualTo(username);
+		example.or().andUsernameEqualTo(username).andDelmarkEqualTo(1);
 		List<User> list = userMapper.selectByExample(example);
 		if(list != null && list.size() != 0) {
 			return list.get(0);

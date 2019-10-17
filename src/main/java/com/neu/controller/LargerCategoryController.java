@@ -3,6 +3,7 @@ package com.neu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.neu.entity.LargerCategory;
+import com.neu.service.CommodityService;
 import com.neu.service.LargerCategoryService;
 import com.neu.service.SmallCategoryService;
 
@@ -21,6 +23,10 @@ public class LargerCategoryController {
 
 	@Autowired
 	private SmallCategoryService smallCategoryService;
+	
+	@Autowired
+	private CommodityService commodityService;
+	
 	// 大分类的增加
 	@RequestMapping("insert")
 	public int insert(@RequestBody LargerCategory largerCategory) {
@@ -30,9 +36,11 @@ public class LargerCategoryController {
 	}
 
 	@RequestMapping("delete")
+	@Transactional
 	public int delete(@RequestBody LargerCategory largerCategory) {
 		//事务处理一下
 		smallCategoryService.deleteByLg(largerCategory);
+		commodityService.deleteByLg(largerCategory);
 		return largerCategoryService.delete(largerCategory.getId());
 
 	}

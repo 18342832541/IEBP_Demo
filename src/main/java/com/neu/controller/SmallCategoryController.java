@@ -3,9 +3,8 @@ package com.neu.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.neu.entity.SmallCategory;
+import com.neu.service.CommodityService;
 import com.neu.service.SmallCategoryService;
 
 @RestController
@@ -20,6 +20,9 @@ import com.neu.service.SmallCategoryService;
 public class SmallCategoryController {
 	@Autowired
 	private SmallCategoryService smallCategoryService;
+	
+	@Autowired
+	private CommodityService commodityService;
 
 	@RequestMapping("insert")
 	public int insert(@RequestBody SmallCategory smallCategory) {
@@ -29,15 +32,11 @@ public class SmallCategoryController {
 	}
 
 	@RequestMapping("delete")
+	@Transactional
 	public int delete(@RequestBody SmallCategory smallCategory) {
+		//事务处理
+		commodityService.deleteBySm(smallCategory);
 		return smallCategoryService.delete(smallCategory.getId());
-
-	}
-
-	/// 小分类的更新
-	@RequestMapping("update")
-	public int update(SmallCategory smallCategory) {
-		return smallCategoryService.update(smallCategory);
 
 	}
 

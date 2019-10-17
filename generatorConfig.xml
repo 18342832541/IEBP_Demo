@@ -16,7 +16,10 @@
     <javaClientGenerator targetPackage="com.neu.mapper" targetProject="IEBP_Demo" type="XMLMAPPER" />
     
    
-    
+    <table tableName="user" domainObjectName="User">
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    	<columnOverride column="role_id" property="role" javaType="Role"></columnOverride>
+    </table>
     <!-- <table tableName="user" domainObjectName="User">
     	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
     	<columnOverride column="role_id" property="role" javaType="Role"></columnOverride>
@@ -33,7 +36,7 @@
     	<columnOverride column="menu_id" javaType="Menu" property="menu"></columnOverride>
     </table> -->
     
-    <table tableName="order_info" domainObjectName="OrderInfo">
+   <!--  <table tableName="order_info" domainObjectName="OrderInfo">
     	<columnOverride column="goods_number" javaType="Commodity" property="commodity"></columnOverride>
     	<columnOverride column="user_id" javaType="User" property="user"></columnOverride>
     	<columnOverride column="status1" javaType="ConstantItem" property="constantItem1"></columnOverride>
@@ -44,7 +47,7 @@
     	<columnOverride column="ConstantTypeID" javaType="ConstantType" property="constantType"></columnOverride>
     </table>
     <table tableName="constanttype" domainObjectName="ConstantType">
-    </table>
+    </table> -->
     
     
   </context>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.github.pagehelper.PageHelper;
@@ -27,6 +28,7 @@ public class SmallCategoryServiceImpl implements SmallCategoryService {
 
 	// 小分类的更新
 	@Override
+	@Transactional
 	public int update(SmallCategory entity) {
 		return smallCategoryMapper.updateByPrimaryKeySelective(entity);
 	}

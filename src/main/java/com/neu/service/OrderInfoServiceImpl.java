@@ -57,8 +57,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 			Integer orderNumber = Integer.parseInt(params.get("orderNumber").toString());
 			criteria.andOrderNumberEqualTo(orderNumber);
 			criteria2.andOrderNumberEqualTo(orderNumber);
-		}
-		;
+		};
 		if (params.get("orderTime").toString() != "") {
 			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 			Date orderTime = null;
@@ -70,16 +69,14 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 			}
 			criteria.andOrderTimeGreaterThanOrEqualTo(orderTime);
 			criteria2.andOrderTimeGreaterThanOrEqualTo(orderTime);
-		}
-		;
+		};
 		if (Integer.parseInt(params.get("status").toString()) != 0) {
 			Integer status = Integer.parseInt(params.get("status").toString());
 			ConstantItem constantItem = new ConstantItem();
 			constantItem.setId(status);
 			criteria.andConstantItem1EqualTo(constantItem);
 			criteria2.andConstantItem2EqualTo(constantItem);
-		}
-		;
+		};
 		example.setOrderByClause("order_time DESC, id desc");
 		List<OrderInfo> list = orderInfoMapper.selectByExample(example);
 		PageInfo<OrderInfo> pageInfo = new PageInfo<>(list);
@@ -102,8 +99,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	 */
 
 	// 查询所有
-<<<<<<< HEAD
-=======
 	/*
 	 * @Override public PageInfo<OrderInfo> getPaged1(int pageNum, int
 	 * pageSize,Map<String, Object> params) { PageHelper.startPage(pageNum,
@@ -111,18 +106,13 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	 * OrderInfoExample()); PageInfo<OrderInfo> pageInfo = new PageInfo<>(list);
 	 * return pageInfo; }
 	 */
->>>>>>> refs/remotes/origin/master
-
 	@Override
-<<<<<<< HEAD
 	public List<OrderInfo> getAll() {
 		List<OrderInfo> list = orderInfoMapper.selectByExample(new OrderInfoExample());
 		return list;
 	}
 
 	@Override
-=======
->>>>>>> refs/remotes/origin/master
 	public PageInfo<OrderInfo> getByUserIdPaged(int pageNum, int pageSize, User user) {
 		PageHelper.startPage(pageNum, pageSize);
 		OrderInfoExample example = new OrderInfoExample();

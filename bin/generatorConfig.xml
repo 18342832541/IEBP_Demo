@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1" targetRuntime="Mybatis3">
+  	<property name="javaFileEncoding" value="UTF-8"/>
+  	<commentGenerator>
+  		<property name="suppressDate" value="true"/>
+  		<property name="addRemarkComments" value="true"/>
+  	</commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/iebp?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;useInformationSchema=true&amp;nullCatalogMeansCurrent=true" 
+    	driverClass="com.mysql.cj.jdbc.Driver" password="root" userId="root" />
+    <!-- 生成实体类 -->
+    <javaModelGenerator targetPackage="com.neu.entity" targetProject="IEBP_Demo" />
+    <!-- 生成接口及mapper映射文件 -->
+    <sqlMapGenerator targetPackage="com.neu.mapper" targetProject="IEBP_Demo" />
+    <javaClientGenerator targetPackage="com.neu.mapper" targetProject="IEBP_Demo" type="XMLMAPPER" />
+    
+   
+    
+    <!-- <table tableName="user" domainObjectName="User">
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    	<columnOverride column="role_id" property="role" javaType="Role"></columnOverride>
+    </table>
+     <table tableName="role" domainObjectName="Role">
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+     <table tableName="menu" domainObjectName="Menu">
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    	<columnOverride column="parent_id" javaType="Menu" property="parentMenu"></columnOverride>
+    </table> -->
+   <!--  <table tableName="role_menu" domainObjectName="roleMenu">
+    	<columnOverride column="role_id" javaType="Role" property="role"></columnOverride>
+    	<columnOverride column="menu_id" javaType="Menu" property="menu"></columnOverride>
+    </table> -->
+    
+    <table tableName="order_info" domainObjectName="OrderInfo">
+    	<columnOverride column="goods_number" javaType="Commodity" property="commodity"></columnOverride>
+    	<columnOverride column="user_id" javaType="User" property="user"></columnOverride>
+    	<columnOverride column="status1" javaType="ConstantItem" property="constantItem1"></columnOverride>
+    	<columnOverride column="status2" javaType="ConstantItem" property="constantItem2"></columnOverride>
+    </table>
+    
+     <table tableName="constantitem" domainObjectName="ConstantItem">
+    	<columnOverride column="ConstantTypeID" javaType="ConstantType" property="constantType"></columnOverride>
+    </table>
+    <table tableName="constanttype" domainObjectName="ConstantType">
+    </table>
+    
+    
+  </context>
+</generatorConfiguration>

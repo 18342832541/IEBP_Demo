@@ -25,6 +25,8 @@ import com.github.pagehelper.PageInfo;
 import com.neu.entity.LoginResponse;
 import com.neu.entity.Role;
 import com.neu.entity.User;
+import com.neu.service.OrderInfoService;
+import com.neu.service.UserInfoService;
 import com.neu.service.UserService;
 
 @Controller
@@ -37,10 +39,66 @@ public class UserController {
 	@RequestMapping("login")
 	@ResponseBody
 	public LoginResponse login(String username,String password,String code,HttpSession session) {
-		User user = userService.login(username, password);
+		
 		LoginResponse loginResponse = new LoginResponse();
+		String oldCode = (String)session.getAttribute("code");
+		if(!oldCode.equals(code)) {
+			loginResponse.setStatus("codeError");
+			loginResponse.setMsg("验证码输入错误！");
+			return loginResponse;
+		};
+		
+		User user = userService.login(username, password);
 		if(user != null) {
 			loginResponse.setUser(user);
+			loginResponse.setStatus("success");
+			session.setAttribute("user", user);
+			return loginResponse;
+		}else {
+			loginResponse.setStatus("userError");
+			loginResponse.setMsg("用户名或密码输入错误！");
+			return loginResponse;
+		}
+	}
+	
+	
+	@RequestMapping("regist")
+	@ResponseBody
+	public LoginResponse regist(String username,String password,String code,HttpSession session) {
+		LoginResponse loginResponse = new LoginResponse();
+		String oldCode = (String)session.getAttribute("code");
+		if(!oldCode.equals(code)) {
+			loginResponse.setStatus("codeError");
+			loginResponse.setMsg("验证码输入错误！");
+			return loginResponse;
+		};
+
+		if(userService.getByName(username) != null) {
+			loginResponse.setStatus("nameExsitError");
+			loginResponse.setMsg("用户名已被占用！");
+			return loginResponse;
+		};
+		
+		User newUser = new User();
+		newUser.setUsername(username);
+		newUser.setPassword(password);
+		newUser.setRole(new Role(2));
+		User user = (User)session.getAttribute("user");
+		int i = 0;
+		if(user != null && user.getId() != null) {
+			newUser.setId(user.getId());
+			i = userService.update(newUser);
+		}else {
+			i = userService.insert(newUser);
+		}
+		
+		newUser = userService.getById(user.getId());
+		session.setAttribute("user", newUser);
+		Date date = new Date();
+		session.setAttribute("registTime", date);
+		
+		if(i == 1) {
+			loginResponse.setUser(newUser);
 			loginResponse.setStatus("success");
 			session.setAttribute("user", user);
 			return loginResponse;
@@ -77,8 +135,14 @@ public class UserController {
 	
 	@RequestMapping("delete")
 	@ResponseBody
-	public int delete(User user){
+	public int delete(@RequestBody User user){
 		return userService.delete(user.getId());
+	}
+	
+	@RequestMapping("update")
+	@ResponseBody
+	public int update(@RequestBody User user){
+		return userService.update(user);
 	}
 	
 	@RequestMapping("getUserId")
@@ -117,20 +181,6 @@ public class UserController {
 		loginResponse.setStatus("success");
 		return loginResponse;
 		
-	}
-	
-	@RequestMapping("userMenu")
-	@ResponseBody
-	public LoginResponse getUserMenu(String username,String password,String Code){
-		User user = userService.login("root", "111");
-		LoginResponse loginResponse = new LoginResponse();
-		if(user != null) {
-			loginResponse.setUser(user);
-			
-			return loginResponse;
-		}else {
-			return null;
-		}
 	}
 	
 	@RequestMapping("code")

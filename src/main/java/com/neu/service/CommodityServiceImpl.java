@@ -12,6 +12,7 @@ import com.neu.entity.Commodity;
 import com.neu.entity.CommodityExample;
 import com.neu.entity.CommodityExample.Criteria;
 import com.neu.entity.LargerCategory;
+import com.neu.entity.LargerCategoryExample;
 import com.neu.entity.SmallCategory;
 import com.neu.mapper.CommodityMapper;
 
@@ -44,6 +45,23 @@ public class CommodityServiceImpl implements CommodityService {
 		return commodityMapper.selectByPrimaryKey(id);
 
 	}
+	
+/*	@Override
+	public int getByCountById(Map<String,Integer> map) {
+		CommodityExample example = new CommodityExample();
+		if(map.get("lgId") != null) {
+			LargerCategory largerCategory = new LargerCategory();
+			largerCategory.setId(map.get("lgId"));
+			example.or().andLargercategoryEqualTo(largerCategory);
+		}
+		if(map.get("lgId") != null) {
+			LargerCategory largerCategory = new LargerCategory();
+			largerCategory.setId(map.get("lgId"));
+			example.or().andLargercategoryEqualTo(largerCategory);
+		}
+		return commodityMapper.selectByPrimaryKey(id);
+
+	}*/
 
 	// 商品名字模糊查询
 	@Override
@@ -79,6 +97,20 @@ public class CommodityServiceImpl implements CommodityService {
 	public List<Commodity> getAll() {
 		return null;
 
+	}
+
+	@Override
+	public int deleteByLg(LargerCategory lgCategory) {
+		CommodityExample example = new CommodityExample();
+		example.or().andLargercategoryEqualTo(lgCategory);
+		return commodityMapper.deleteByExample(example);
+	}
+
+	@Override
+	public int deleteBySm(SmallCategory smCategory) {
+		CommodityExample example = new CommodityExample();
+		example.or().andSmallcategoryEqualTo(smCategory);
+		return commodityMapper.deleteByExample(example);
 	}
 
 }
